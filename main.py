@@ -15,16 +15,24 @@ def main():
 def countLeters(book):
     letters = {}
     eval = book.lower()
+    split_letters = []
     for i in eval:
-        if i in letters.keys():
-            letters[i] += 1
-        else:
-            letters[i] = 1
+        if i.isalpha():
+            if i in letters.keys():
+                letters[i] += 1
+            else:
+                letters[i] = 1
     for j in letters.keys():
-        print(f"{j} used {letters[j]} times")
+        split_letters.append({"name":j,"num":letters[j]})
+    split_letters.sort(reverse=False, key=sort_on)
+    for k in split_letters:
+        print(f"The letter '{k["name"]}' occurs {k["num"]} times.")
     print("=== Finished ===")
+
+
+
+def sort_on(dict):
+    return dict["name"]
     
-
-
 
 main()
